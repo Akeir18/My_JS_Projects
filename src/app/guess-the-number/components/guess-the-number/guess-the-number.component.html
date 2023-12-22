@@ -1,0 +1,20 @@
+<div class="container">
+
+    <h1> Guess the number </h1>
+    <p>The range of the numbers are from {{ this.min }} to {{ this.max}}.</p>
+
+    <div *ngIf="gameMessage" class="alert"
+        [ngClass]="gameMessage && randomNumber === 0 ? 'alert-success' : 'alert-danger'">
+        {{gameMessage}}
+    </div>
+
+    <div *ngIf="randomNumber === 0; else gameStarted">
+        <button class="btn btn-primary" (click)="this.startTheGame()">Start the game</button>
+    </div>
+
+    <ng-template #gameStarted>
+        <input type="number" placeholder="Number" class="form-control" (keyup.enter)="checkNumber()" #numberInput>
+        <!-- <button class="btn btn-primary" (click)="checkNumber()> Check number! </button> -->
+    </ng-template>
+
+</div>
